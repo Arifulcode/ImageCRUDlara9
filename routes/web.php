@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ImageCrudController;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\ImageCrudController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/products', function () {
+//     return view('welcome');
+// });
+Route::get('/products',[ImageCrudController::class , 'all_products']);
