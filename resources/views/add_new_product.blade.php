@@ -42,17 +42,20 @@
                                 </ul>
                             </div>
                         @endif
+                        @if (Session::has('msg'))
+                            <p class="btn btn-success">{{ Session::get('msg') }}</p>
+                        @endif
                         <form action="{{ route('store.product') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="product_name">Product Name</label>
-                                <input type="text" name="product_name" class="form-control form-control-sm"
-                                    id="product_name" placeholder="Enter your Product Name">
+                                <label for="name">Product Name</label>
+                                <input type="text" name="name" class="form-control form-control-sm"
+                                    id="name" placeholder="Enter your Product Name">
                             </div>
                             <div class="form-group ">
-                                <label for="product_image">Product Image</label>
-                                <input type="file" name="product_image" class="form-control form-control-sm"
-                                    id="product_image" placeholder="Choose your Product Image">
+                                <label for="image">Product Image</label>
+                                <input type="file" name="image" class="form-control form-control-sm"
+                                    id="image" placeholder="Choose your Product Image">
                             </div>
                             <button type="submit" class="btn btn-dark btn-sm mt-3">Submit</button>
                         </form>
