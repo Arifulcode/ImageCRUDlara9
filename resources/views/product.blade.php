@@ -36,22 +36,28 @@
                         <table class="table table-striped table-bordered table-hover tables">
                             <thead>
                                 <tr>
-                                    <th>{{ __('ID') }}</th>
+                                    <th>{{ __('No') }}</th>
                                     <th>{{ __('Product Image') }}</th>
                                     <th>{{ __('Product Name') }}</th>
                                     <th>{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td></td>
-                                    <td>Xiaoomi Redmi Note 10</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-sm">{{ __('Edit') }}</a>
-                                        <a href="#" class="btn btn-danger btn-sm">{{ __('Delete') }}</a>
-                                    </td>
-                                </tr>
+                                @foreach ($products as $key => $product)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>
+                                            <img sytle="width:150px;"
+                                                src="{{ asset('images/products/' . $product->image) }}"
+                                                alt="product_image" width=100vh>
+                                        </td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary btn-sm">{{ __('Edit') }}</a>
+                                            <a href="#" class="btn btn-danger btn-sm">{{ __('Delete') }}</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
