@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 
 class ImageCrudController extends Controller
 {
-    public function all_products(){
+    public function AllProducts(){
         return view('product');
     }
+    public function AddNewProduct(){
+        return view('add_new_product');
+    }
+    public function StoreProduct(Request $request){
+        // dd($request);
+        $request->validate([
+            'product_name' => 'required',
+            'product_image' => 'required|mimes:jpg,png',
+
+        ]);
+        // return view('add_new_product');
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -21,4 +21,6 @@ Route::get('/', function () {
 // Route::get('/products', function () {
 //     return view('welcome');
 // });
-Route::get('/products',[ImageCrudController::class , 'all_products']);
+Route::get('/products',[ImageCrudController::class , 'AllProducts'])->name('all.product');
+Route::get('/add-new-product',[ImageCrudController::class , 'AddNewProduct'])->name('add.new.product');
+Route::post('/store-product',[ImageCrudController::class , 'StoreProduct'])->name('store.product');

@@ -28,32 +28,34 @@
                         </div>
                         <div style="float:right;">
                             {{-- <h2>{{ __('ImageCRUD') }}</h2> --}}
-                            <a href="{{ route('add.new.product') }}"
-                                class="btn btn-dark btn-sm ">{{ __('Add New Product') }}</a>
+                            <a href="{{ route('all.product') }}"
+                                class="btn btn-dark btn-sm ">{{ __('All Products') }}</a>
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table table-striped table-bordered table-hover tables">
-                            <thead>
-                                <tr>
-                                    <th>{{ __('ID') }}</th>
-                                    <th>{{ __('Product Image') }}</th>
-                                    <th>{{ __('Product Name') }}</th>
-                                    <th>{{ __('Action') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td></td>
-                                    <td>Xiaoomi Redmi Note 10</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-sm">{{ __('Edit') }}</a>
-                                        <a href="#" class="btn btn-danger btn-sm">{{ __('Delete') }}</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form action="{{ route('store.product') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <label for="product_name">Product Name</label>
+                                <input type="text" name="product_name" class="form-control form-control-sm"
+                                    id="product_name" placeholder="Enter your Product Name">
+                            </div>
+                            <div class="form-group ">
+                                <label for="product_image">Product Image</label>
+                                <input type="file" name="product_image" class="form-control form-control-sm"
+                                    id="product_image" placeholder="Choose your Product Image">
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-sm mt-3">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
