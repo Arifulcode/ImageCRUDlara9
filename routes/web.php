@@ -25,3 +25,4 @@ Route::get('/products',[ImageCrudController::class , 'AllProducts'])->name('all.
 Route::get('/add-new-product',[ImageCrudController::class , 'AddNewProduct'])->name('add.new.product');
 Route::post('/store-product',[ImageCrudController::class , 'StoreProduct'])->name('store.product');
 Route::get('/edit-product/{id}',[ImageCrudController::class , 'EditProduct'])->name('edit.product');
+Route::post('/update-product/{id}',[ImageCrudController::class , 'UpdateProduct'])->name('update.product');

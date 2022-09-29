@@ -45,8 +45,10 @@
                         @if (Session::has('msg'))
                             <p class="btn btn-success">{{ Session::get('msg') }}</p>
                         @endif
-                        <form action="{{ route('store.product') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('update.product', $product->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
+                            {{-- @method('PUT') --}}
                             <div class="form-group">
                                 <label for="name">Product Name</label>
                                 <input type="text" name="name" class="form-control form-control-sm" id="name"
@@ -54,7 +56,8 @@
                             </div>
                             <div class="form-group ">
                                 <label for="image">Product Image</label>
-                                <img class="my-2 image-responsive w-25" src="{{ asset('/images/products/' . $product->image) }}"
+                                <img class="my-2 image-responsive w-25"
+                                    src="{{ asset('/images/products/' . $product->image) }}"
                                     placeholder="Enter your Product Image">
                                 <input type="file" name="image" class="form-control form-control-sm" id="image"
                                     placeholder="Choose your Product Image">

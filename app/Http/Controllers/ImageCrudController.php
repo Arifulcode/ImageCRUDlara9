@@ -6,6 +6,7 @@ use App\Models\ImageCrud;
 use Illuminate\Http\Request;
 // use Symfony\Component\HttpFoundation\Session\Session;
 use Session;
+use File;
 
 class ImageCrudController extends Controller
 {
@@ -36,10 +37,42 @@ class ImageCrudController extends Controller
         return redirect()->back();
 
     }
+
     public function EditProduct($id){
         $product = ImageCrud::FindOrFail($id);
         // return $product;
         return view('edit_product', compact('product'));
+    }
+
+    public function UpdateProduct(Request $request , $id){
+
+        $product = ImageCrud::findOrFail($id);
+        // return $product;
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $imageName = '';
+        $deleteOldImage= 'images/products/'.$product->image;
+
+        if($image = $request->file('image')){
+            if (file_exists($deleteOldImage)) {
+                File::delete($deleteOldImage);
+            }
+            $imageName = time().'-'.uniqid().'.'.$image->getClientOriginalExtension();
+            $image->move('images/products', $imageName);
+        }else{
+            $imageName=$product->image;
+        }
+
+        ImageCrud::where('id',$id)->update([
+            'name'=>$request->name,
+            'image'=>$imageName,
+        ]);
+        Session::flash('msg','Product updated successfully.');
+        return redirect()->back();
+
     }
 
 
