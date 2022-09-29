@@ -36,6 +36,11 @@ class ImageCrudController extends Controller
         return redirect()->back();
 
     }
+    public function EditProduct($id){
+        $product = ImageCrud::FindOrFail($id);
+        // return $product;
+        return view('edit_product', compact('product'));
+    }
 
 
 

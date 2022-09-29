@@ -53,7 +53,8 @@
                                         </td>
                                         <td>{{ $product->name }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-primary btn-sm">{{ __('Edit') }}</a>
+                                            <a href="{{ route('edit.product', $product->id) }}"
+                                                class="btn btn-primary btn-sm">{{ __('Edit') }}</a>
                                             <a href="#" class="btn btn-danger btn-sm">{{ __('Delete') }}</a>
                                         </td>
                                     </tr>
