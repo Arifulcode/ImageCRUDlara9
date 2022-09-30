@@ -75,6 +75,20 @@ class ImageCrudController extends Controller
 
     }
 
+    public function DeleteProduct($id){
+        $product = ImageCrud::FindOrFail($id);
+         $deleteOldImage= 'images/products/'.$product->image;
+
+        if (file_exists($deleteOldImage)) {
+            File::delete($deleteOldImage);
+        }
+        $product->delete();
+        Session::flash('msg','Product deleted successfully.');
+        return redirect()->back();
+    }
+
+
+
 
 
 }

@@ -55,7 +55,9 @@
                                         <td>
                                             <a href="{{ route('edit.product', $product->id) }}"
                                                 class="btn btn-primary btn-sm">{{ __('Edit') }}</a>
-                                            <a href="#" class="btn btn-danger btn-sm">{{ __('Delete') }}</a>
+                                            <a href="{{ route('delete.product', $product->id) }}"
+                                                onclick="return confirm('Are You Confirm Delete?')"
+                                                class="btn btn-danger btn-sm">{{ __('Delete') }}</a>
                                         </td>
                                     </tr>
                                 @endforeach
